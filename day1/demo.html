@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{title.substring(0, title.length -1)}}<span class="text-danger">{{title.substring(title.length -1,title.length)}}</span>
+    </h1>
+    <button v-on:click="message='default'" class="btn " :class="{'btn-danger': danger}" :title="title">Button1</button>
+    <button class="btn " v-if="showBtn" :title="title">Button2</button>
+    <button class="btn " v-else="showBtn" :title="title">Button3</button>
+    <button class="btn " v-show="message=='default'" :title="title">Button3</button>
+
+    <input type="text" v-model="message" @keyup.enter="onDemo">
+    <ul>
+        <li v-for="item in items" >{{item}}{{message}}</li>
+    </ul>
+</div>
+
+<script src="./demo.js"></script>
+</body>
+</html>

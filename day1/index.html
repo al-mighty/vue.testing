@@ -13,22 +13,28 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<div class="container">
+<div class="container" id="app">
+    <div class="row">
+        <div class="col">
+            <app-title :title="title"></app-title>
+        </div>
+    </div>
     <div class="row">
         <form action=" ">
             <div class="form-group">
-                <input type="text" id="filter" class="form-control">
+                <input type="text" v-model="search" class="form-control">
             </div>
         </form>
     </div>
-</div>
-<div class="container">
     <div class="row">
-        <div class="col-3 card-container">
+        <div class="col-3 card-container" v-for="film in filtered">
             <div class="card"><img src="http://via.placeholder.com/253x200" alt="" class="card-img-top">
                 <div class="card-body">
-                    <h4 class="card-title"></h4>
-                    <p class="card-text">description</p>
+                    <h4 class="card-title">{{film.title}}</h4>
+                    <p class="card-text">{{film.desc}}</p>
+                    <p class="card-tags">
+                        <span class="badge badge-light" v-for="tag in film.tags">{{tag}}</span>
+                    </p>
                     <div class="card-footer">
                         <button class="btn btn-success"><span class="fa fa-thumbs-up"></span></button>
                         <button class="btn btn-danger"><span class="fa fa-thumbs-down"></span></button>
@@ -36,41 +42,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-3 card-container">
-            <div class="card"><img src="http://via.placeholder.com/253x200" alt="" class="card-img-top">
-                <div class="card-body">
-                    <h4 class="card-title"></h4>
-                    <p class="card-text">description</p>
-                    <div class="card-footer">
-                        <button class="btn btn-success"><span class="fa fa-thumbs-up"></span></button>
-                        <button class="btn btn-danger"><span class="fa fa-thumbs-down"></span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-3 card-container">
-            <div class="card"><img src="http://via.placeholder.com/253x200" alt="" class="card-img-top">
-                <div class="card-body">
-                    <h4 class="card-title"></h4>
-                    <p class="card-text">description</p>
-                    <div class="card-footer">
-                        <button class="btn btn-success"><span class="fa fa-thumbs-up"></span></button>
-                        <button class="btn btn-danger"><span class="fa fa-thumbs-down"></span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-3 card-container">
-            <div class="card"><img src="http://via.placeholder.com/253x200" alt="" class="card-img-top">
-                <div class="card-body">
-                    <h4 class="card-title"></h4>
-                    <p class="card-text">description</p>
-                    <div class="card-footer">
-                        <button class="btn btn-success"><span class="fa fa-thumbs-up"></span></button>
-                        <button class="btn btn-danger"><span class="fa fa-thumbs-down"></span></button>
-                    </div>
-                </div>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="text-center" v-if="filtered.length==0">Ничего не найдено</p>
         </div>
     </div>
 </div>
@@ -78,6 +53,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.map"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+<script src="./app-title.js"></script>
 <script src="./app.js"></script>
 </body>
 </html>
