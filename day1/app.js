@@ -10,6 +10,7 @@ new Vue({
             {id: 4, title: "Трансформеры2", desc: 'Роботы', tags: ['Фантастика', 'боевик']},
             {id: 5, title: "Чаппи2", desc: 'Искуственный интелект', tags: ['Техника', 'робот', 'ии']},
             {id: 6, title: "Люси2", desc: 'Фантастическая передозировка наркотиков', tags: ['Фантастика', 'боевик']},
+            {id: 6, title: "Терминатор", desc: 'робот ищет мальца который закоротит его плату', tags: ['Фантастика', 'ии']},
         ],
         tags: [],
         limit: 4,
@@ -30,15 +31,26 @@ new Vue({
     computed: {
         filtered(){
             let filter = this.search.toLowerCase().trim();
-            if (filter == '') {
-                return this.films;
-            }
+            let result = [];
 
-            return this.films.filter(function (film) {
-                if (film.title.toLowerCase().indexOf(filter) != -1) {
-                    return true;
-                }
-            });
+            if (filter == '') {
+                result = this.films;
+            } else {
+                result = this.films.filter(film => {
+                    if (film.title.toLowerCase().indexOf(filter) != -1) {
+                        return true;
+                    }
+                });
+            }
+            if (this.tags.length > 0) {
+                return result.filter(
+                    item => this.tags.every(
+                        tag => item.tags.includes(tag)
+                    )
+                )
+            }
+            return result;
         }
-    },
+
+    }
 })
