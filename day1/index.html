@@ -20,27 +20,22 @@
         </div>
     </div>
     <div class="row">
-        <form action=" ">
-            <div class="form-group">
-                <input type="text" v-model="search" class="form-control">
-            </div>
-        </form>
+        <app-filter v-model="search" :tags="tags" @tag="onTagUnFilterClicked"></app-filter>
     </div>
     <div class="row">
-        <div class="col-3 card-container" v-for="film in filtered">
-            <div class="card"><img src="http://via.placeholder.com/253x200" alt="" class="card-img-top">
-                <div class="card-body">
-                    <h4 class="card-title">{{film.title}}</h4>
-                    <p class="card-text">{{film.desc}}</p>
-                    <p class="card-tags">
-                        <span class="badge badge-light" v-for="tag in film.tags">{{tag}}</span>
-                    </p>
-                    <div class="card-footer">
-                        <button class="btn btn-success"><span class="fa fa-thumbs-up"></span></button>
-                        <button class="btn btn-danger"><span class="fa fa-thumbs-down"></span></button>
-                    </div>
-                </div>
-            </div>
+        <div class="col-3 card-container" v-for="film in filtered.slice(0,limit)">
+            <!--card-->
+            <app-card :card="film" @tag="onTagFilterClicked"></app-card>
+        </div>
+    </div>
+    <div class="row" v-if="limit < filtered.length">
+        <div class="col text-center">
+            <button class="btn btn-primary" @click="limit+=4">Еще</button>
+        </div>
+    </div>
+    <div class="row" v-if="limit >=  filtered.length">
+        <div class="col">
+            <p class="text-center">этой всё</p>
         </div>
     </div>
     <div class="row">
@@ -50,10 +45,12 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.min.js.map"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.map"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.map"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
 <script src="./app-title.js"></script>
+<script src="./app-card.js"></script>
+<script src="./app-filter.js"></script>
 <script src="./app.js"></script>
 </body>
 </html>
