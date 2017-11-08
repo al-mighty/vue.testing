@@ -15,9 +15,4 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
-.babelrc
-.editorconfig
-.eslintignore
-.eslintrc.js
-.postcssrc.js
 package-lock.json
