@@ -20,8 +20,4 @@ selenium-debug.log
 .eslintignore
 .eslintrc.js
 .postcssrc.js
-build/
-config/
-index.html
 package-lock.json
-static/
