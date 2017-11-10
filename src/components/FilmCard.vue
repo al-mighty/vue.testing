@@ -16,10 +16,11 @@
 
 <script>
   export default {
+    name: 'FilmCard',
     props: ['card'],
     methods: {
-      onTagClicked(tag){
-        this.$emit('tag',tag);
+      onTagClicked (tag) {
+        this.$emit('tag', tag)
       }
     }
   }

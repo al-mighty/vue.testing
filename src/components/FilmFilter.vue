@@ -11,13 +11,14 @@
 
 <script>
   export default {
+    name: 'FilmFilter',
     props: ['value', 'tags'],
     methods: {
-      onValueUpdated(value){
-        this.$emit('input', value);
+      onValueUpdated (value) {
+        this.$emit('input', value)
       },
-      onTagClicked(tag) {
-        this.$emit('tag', tag);
+      onTagClicked (tag) {
+        this.$emit('tag', tag)
       }
     }
   }
