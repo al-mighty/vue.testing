@@ -1,12 +1,15 @@
 <template>
-    <form action=" ">
-        <div class="form-group">
-            <input type="text" :value="value" @input="onValueUpdated($event.target.value)" class="form-control">
-        </div>
-        <p>
-            <span class="badge badge-light" v-for="tag in tags" :key="tag" @click="onTagClicked(tag)">#{{tag}} </span>
-        </p>
-    </form>
+    <div class="col">
+        <form action=" ">
+            <div class="form-group">
+                <input type="text" :value="value" @input="onValueUpdated($event.target.value)" class="form-control">
+            </div>
+            <p>
+                <span class="badge badge-light" v-for="tag in tags" :key="tag"
+                      @click="onTagClicked(tag)">#{{tag}} </span>
+            </p>
+        </form>
+    </div>
 </template>
 
 <script>

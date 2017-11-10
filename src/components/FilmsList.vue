@@ -3,7 +3,7 @@
         <div class='row'>
             <film-filter v-model='search' :tags='tags' @tag='onTagUnFilterClicked'></film-filter>
         </div>
-        <div class='row'>
+        <div id="cards" class='row'>
             <div class='col-3 card-container' v-for='film in filtered.slice(0,limit)' :key='film.id'>
                 <!--card-->
                 <film-card :card='film' @tag='onTagFilterClicked'></film-card>
@@ -16,7 +16,7 @@
         </div>
         <div class='row' v-if='limit >=  filtered.length'>
             <div class='col'>
-                <p class='text-center'>этой всё</p>
+                <p class='text-center'>это всё</p>
             </div>
         </div>
         <div class='row'>
@@ -32,7 +32,7 @@
   import FilmCard from './FilmCard'
 
   export default {
-    name: 'FilmList',
+    name: 'FilmsList',
     data () {
       return {
         search: '',
@@ -65,7 +65,9 @@
           },
           {
             id: 5,
-            title: 'Чаппи2', desc: 'Искуственный интелект', tags: ['Техника', 'робот', 'ии']
+            title: 'Чаппи2',
+            desc: 'Искуственный интелект',
+            tags: ['Техника', 'робот', 'ии']
           },
           {
             id: 6,
@@ -97,7 +99,7 @@
       }
     },
     computed: {
-      filtered(){
+      filtered () {
         let filter = this.search.toLowerCase().trim()
         let result = []
 
@@ -105,21 +107,22 @@
           result = this.films
         } else {
           result = this.films.filter(film => {
-            if (film.title.toLowerCase().indexOf(filter) !== -1) {
+            if (film.title.toLowerCase().indexOf(filter) === 0) {
               return true
             }
-          });
+          })
         }
+
         if (this.tags.length > 0) {
-          return result.filter(
-            item => this.tags.every(
-              tag => item.tags.includes(tag)
-            )
+          return result.filter(item =>
+            this.tags.every(tag => item.tags.includes(tag))
           )
         }
+
         return result
       }
+    },
+    components: { FilmFilter, FilmCard }
 
-    }
   }
 </script>
