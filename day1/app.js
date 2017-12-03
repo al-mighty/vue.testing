@@ -63,7 +63,7 @@ new Vue({
       let filter = this.search.toLowerCase().trim()
       let result = []
 
-      if (filter == '') {
+      if (filter === '') {
         result = this.films
       } else {
         result = this.films.filter(film => {

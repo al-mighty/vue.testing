@@ -30,6 +30,7 @@
 <script>
   import FilmFilter from './FilmFilter'
   import FilmCard from './FilmCard'
+  import Axios from 'axios'
 
   export default {
     name: 'FilmsList',
@@ -122,7 +123,13 @@
         return result
       }
     },
-    components: { FilmFilter, FilmCard }
-
+    components: { FilmFilter, FilmCard },
+    created () {
+      // TODO: сделать
+      Axios.get('http://localhost:8080/static/films.json')
+        .then(response => {
+          this.films = response.data
+        })
+    }
   }
 </script>
